@@ -109,7 +109,7 @@ http://localhost:5173
 **Rahul Gowda R**
 
 * GitHub: https://github.com/Rahul-Gowda-R
-* LinkedIn: https://www.linkedin.com/in/rahulgowdar/
+* LinkedIn: https://www.linkedin.com/in/rahul-gowda-r
 * Portfolio: https://rahul-gowda-r.github.io/Portfolio-Website/
 
 ---
