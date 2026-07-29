@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react-swc';
 import path from 'path';
 
 export default defineConfig({
-  base: '/Portfolio-Website/', // ✅ Important for GitHub Pages
+  base: "/Rahul-Portfolio/", // ✅ Important for GitHub Pages
   plugins: [react()],
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
