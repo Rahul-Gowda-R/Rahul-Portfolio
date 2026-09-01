@@ -223,7 +223,7 @@ export default function App() {
               <Rocket className="w-5 h-5 mr-2" />
               View Projects
             </Button>
-            <a href="/Portfolio-Website/resume.pdf" download>
+            <a href="/Rahul-Portfolio/resume.pdf" download>
               <Button
                 variant="outline"
                 size="lg"
@@ -274,7 +274,7 @@ export default function App() {
                 AI-powered assistants, and real-world applications of machine learning.
               </motion.p>
 
-              <a href="/Portfolio-Website/resume.pdf" download>
+              <a href="/Rahul-Portfolio/resume.pdf" download>
                 <Button
                   variant="outline"
                   className="border-blue-400 text-blue-300 hover:bg-blue-400/10 rounded-2xl backdrop-blur-sm"
