@@ -1,41 +1,37 @@
-import React from 'react';
-import { motion } from 'motion/react';
+import { memo, useRef, useState } from 'react';
+import { useLoopingAnimations } from './useLoopingAnimations';
 
-const ShootingStar: React.FC = () => {
-  return (
-    <motion.div
-      className="absolute w-1 h-1 bg-gradient-to-r from-transparent via-white to-transparent"
-      initial={{ 
-        x: '100vw', 
-        y: Math.random() * window.innerHeight * 0.5,
-        rotate: -45 
-      }}
-      animate={{ 
-        x: '-100px', 
-        y: Math.random() * window.innerHeight * 0.5 + 200,
-      }}
-      transition={{
-        duration: 2,
-        ease: "easeOut",
-        repeat: Infinity,
-        repeatDelay: Math.random() * 10 + 5,
-      }}
-      style={{
-        boxShadow: '0 0 6px #fff, 0 0 12px #fff, 0 0 18px #fff',
-        filter: 'blur(0.5px)',
-      }}
-    />
-  );
+const makeStreak = () => {
+  const startY = Math.random() * window.innerHeight * 0.5;
+  const cycle = 10000 + Math.random() * 10000; // the streak takes the first 15% of the cycle, then rests
+  return { startY, cycle, delay: -Math.random() * cycle };
 };
 
-const ShootingStars: React.FC = () => {
+const ShootingStars = memo(function ShootingStars() {
+  const ref = useRef<HTMLDivElement>(null);
+  // Randomize once per mount so parent re-renders don't restart the streaks
+  const [streaks] = useState(() => Array.from({ length: 3 }, makeStreak));
+
+  useLoopingAnimations(ref, (el, i) => {
+    const { startY, cycle, delay } = streaks[i];
+    const end = `translate(-100px, ${startY + 200}px) rotate(-45deg)`;
+    return el.animate(
+      [
+        { transform: `translate(100vw, ${startY}px) rotate(-45deg)`, easing: 'ease-out' },
+        { transform: end, offset: 0.15 },
+        { transform: end },
+      ],
+      { duration: cycle, delay, iterations: Infinity }
+    );
+  });
+
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {Array.from({ length: 3 }, (_, i) => (
-        <ShootingStar key={i} />
+    <div ref={ref} className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+      {streaks.map((_, i) => (
+        <div key={i} className="shooting-star" />
       ))}
     </div>
   );
-};
+});
 
 export default ShootingStars;

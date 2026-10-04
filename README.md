@@ -1,63 +1,74 @@
-# 🌐 Portfolio Website
+# 🌐 Rahul Gowda R — Portfolio
 
-A modern and responsive personal portfolio website built to showcase my **projects**, **technical skills**, **experience**, **certifications**, and **professional journey**. Designed with a clean user interface and smooth interactions, the website serves as a central hub for recruiters, collaborators, and employers to explore my work and connect with me.
+A modern, responsive personal portfolio that showcases my **projects**, **technical skills** and **experience**. It has a space-themed design with animated star fields and smooth interactions, and it's the main place for recruiters, collaborators and employers to explore my work and connect with me.
+
+🔗 **Live site:** https://rahul-gowda-r.github.io/Rahul-Portfolio/
 
 ---
 
 ## ✨ Features
 
-* 👨‍💻 Professional developer portfolio
-* 📂 Featured projects with descriptions
-* 🛠️ Technical skills showcase
-* 💼 Experience and certifications
-* 📄 Resume download
+* 🧭 Sticky navigation bar that highlights the current section, with a mobile menu
+* 📂 Featured projects, with a "View More" button for the rest
+* 🛠️ Skills overview and a tech stack backed by real projects
+* 💼 Experience timeline with internship highlights
+* 🎓 Education, certifications, hackathons and leadership
+* 📄 One-click resume download
 * 📱 Fully responsive design
-* 🎨 Modern UI with smooth animations
-* 📬 Contact section with social links
-* ⚡ Fast and optimized performance
+* 🌌 Animated cosmic background (star fields and shooting stars)
+* 📬 Contact form that emails every message straight to my inbox (via FormSubmit)
+* 🚀 Automatic deployment to GitHub Pages on every push
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Technology   | Purpose            |
-| ------------ | ------------------ |
-| React        | Frontend Framework |
-| Vite         | Build Tool         |
-| Tailwind CSS | Styling            |
-| JavaScript   | Application Logic  |
-| HTML5        | Structure          |
-| CSS3         | Additional Styling |
+| Technology               | Purpose                     |
+| ------------------------ | --------------------------- |
+| React 18                 | UI framework                |
+| TypeScript               | Application logic           |
+| Vite                     | Build tool and dev server   |
+| Tailwind CSS v4          | Styling                     |
+| Motion (Framer Motion)   | Animations                  |
+| Radix UI / shadcn/ui     | Accessible UI components    |
+| Lucide                   | Icons                       |
+| GitHub Actions + Pages   | Continuous deployment       |
 
 ---
 
 ## 📂 Project Structure
 
 ```text
-Portfolio-Website/
+Rahul-Portfolio/
 │
-├── public/
+├── .github/workflows/main.yml   # Builds and deploys to GitHub Pages
+├── public/                      # Static files (resume.pdf, favicon.svg)
 ├── src/
-│   ├── assets/
 │   ├── components/
-│   ├── pages/
-│   ├── App.jsx
-│   └── main.jsx
-│
+│   │   ├── cosmic/              # StarField and ShootingStars backgrounds
+│   │   ├── figma/               # ImageWithFallback
+│   │   ├── ui/                  # shadcn/ui components
+│   │   └── Navbar.tsx
+│   ├── styles/globals.css       # Theme tokens and base styles
+│   ├── App.tsx                  # Page sections and content
+│   ├── index.css                # Tailwind entry point
+│   └── main.tsx
+├── index.html
 ├── package.json
-├── vite.config.js
-└── README.md
+└── vite.config.ts
 ```
+
+Project, skill and experience content lives in plain arrays at the top of `src/App.tsx`, so updating the portfolio doesn't require touching the layout.
 
 ---
 
-## 🚀 Installation
+## 🚀 Getting Started
 
 ### Clone the repository
 
 ```bash
-git clone https://github.com/Rahul-Gowda-R/Portfolio-Website.git
-cd Portfolio-Website
+git clone https://github.com/Rahul-Gowda-R/Rahul-Portfolio.git
+cd Rahul-Portfolio
 ```
 
 ### Install dependencies
@@ -72,11 +83,25 @@ npm install
 npm run dev
 ```
 
-Open your browser and visit:
+The site opens automatically at:
 
 ```text
-http://localhost:5173
+http://localhost:3000/Rahul-Portfolio/
 ```
+
+### Build for production
+
+```bash
+npm run build
+```
+
+The output goes to `dist/`.
+
+---
+
+## 🌍 Deployment
+
+Every push to `main` runs the GitHub Actions workflow in `.github/workflows/main.yml`. It builds the site and publishes it to GitHub Pages. No manual deploy step is needed.
 
 ---
 
@@ -84,23 +109,22 @@ http://localhost:5173
 
 * 🏠 Home
 * 👨‍💻 About Me
-* 🛠️ Skills
-* 🚀 Projects
-* 💼 Experience
-* 📜 Certifications
-* 📞 Contact
+* 🛠️ Skills & Expertise
+* 💻 Tech Stack
+* 🚀 Featured Projects
+* 💼 Experience & Internships
+* 🎓 Education
+* 🏅 Certifications & Activities
+* 📞 Get In Touch
 
 ---
 
-## 🚀 Future Enhancements
+## 🔮 Future Enhancements
 
 * Blog section
-* Dark/Light mode toggle
 * Project filtering by technology
 * Interactive project demos
 * Visitor analytics
-* Multi-language support
-* Integrated contact form with email service
 
 ---
 
@@ -110,7 +134,8 @@ http://localhost:5173
 
 * GitHub: https://github.com/Rahul-Gowda-R
 * LinkedIn: https://www.linkedin.com/in/rahul-gowda-r
-* Portfolio: https://rahul-gowda-r.github.io/Portfolio-Website/
+* YouTube: https://www.youtube.com/@Becoming_Rahul
+* Portfolio: https://rahul-gowda-r.github.io/Rahul-Portfolio/
 
 ---
 

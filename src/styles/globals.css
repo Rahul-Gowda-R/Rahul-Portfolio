@@ -186,4 +186,67 @@
 
 html {
   font-size: var(--font-size);
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Stars for StarField.tsx and ShootingStar.tsx; they're animated with element.animate() in useLoopingAnimations.ts */
+.star-layer {
+  position: absolute;
+  inset: 0;
+  opacity: 0.6;
+}
+
+.shooting-star {
+  position: absolute;
+  width: 0.25rem;
+  height: 0.25rem;
+  background: linear-gradient(to right, transparent, #fff, transparent);
+  box-shadow: 0 0 6px #fff, 0 0 12px #fff, 0 0 18px #fff;
+  filter: blur(0.5px);
+  transform: translateX(-200px);
+}
+
+/* Spinning, pulsing core of the About orb */
+.orb-core {
+  animation: orb-spin 8s linear infinite, orb-pulse 3s ease-in-out infinite;
+}
+
+@keyframes orb-spin {
+  to {
+    rotate: 360deg;
+  }
+}
+
+@keyframes orb-pulse {
+  50% {
+    scale: 1.1;
+  }
+}
+
+/* App.tsx marks off-screen sections; pause their CSS animations so the browser only animates what's visible.
+   (Unlayered, so it already beats Tailwind's animate-* utilities without !important.) */
+[data-offscreen] * {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shooting-star {
+    display: none;
+  }
+
+  .orb-core,
+  [class*="animate-"] {
+    animation: none;
+  }
+}
+
+/* Keep section headings clear of the fixed navbar when jumping to an anchor */
+section[id] {
+  scroll-margin-top: 4rem;
 }
