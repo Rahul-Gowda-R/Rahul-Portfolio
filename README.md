@@ -9,7 +9,7 @@ A modern, responsive personal portfolio that showcases my **projects**, **techni
 ## ✨ Features
 
 * 🧭 Sticky navigation bar that highlights the current section, with a mobile menu
-* 📂 Featured projects, with a "View More" button for the rest
+* 📂 Projects with filter tabs, tech tags and a "View more" toggle
 * 🛠️ Skills overview and a tech stack backed by real projects
 * 💼 Experience timeline with internship highlights
 * 🎓 Education, certifications, hackathons and leadership
@@ -44,13 +44,13 @@ Rahul-Portfolio/
 ├── .github/workflows/main.yml   # Builds and deploys to GitHub Pages
 ├── public/                      # Static files (resume.pdf, favicon.svg)
 ├── src/
-│   ├── components/
-│   │   ├── cosmic/              # StarField and ShootingStars backgrounds
-│   │   ├── figma/               # ImageWithFallback
-│   │   ├── ui/                  # shadcn/ui components
-│   │   └── Navbar.tsx
-│   ├── styles/globals.css       # Theme tokens and base styles
-│   ├── App.tsx                  # Page sections and content
+│   ├── components/              # Navbar, background, timeline, form, shared styles
+│   │   ├── cosmic/              # StarField and ShootingStars
+│   │   └── ui/                  # Input and textarea primitives
+│   ├── sections/                # Hero, About, Skills, Projects, Experience, Education, Contact, Footer
+│   ├── styles/globals.css       # Theme tokens, fonts and base styles
+│   ├── data.tsx                 # All portfolio content
+│   ├── App.tsx                  # Composes the sections
 │   ├── index.css                # Tailwind entry point
 │   └── main.tsx
 ├── index.html
@@ -58,7 +58,7 @@ Rahul-Portfolio/
 └── vite.config.ts
 ```
 
-Project, skill and experience content lives in plain arrays at the top of `src/App.tsx`, so updating the portfolio doesn't require touching the layout.
+All content (projects, skills, experience, education and more) lives in `src/data.tsx`, so updating the portfolio doesn't require touching the layout.
 
 ---
 
@@ -107,15 +107,13 @@ Every push to `main` runs the GitHub Actions workflow in `.github/workflows/main
 
 ## 📌 Sections
 
-* 🏠 Home
-* 👨‍💻 About Me
-* 🛠️ Skills & Expertise
-* 💻 Tech Stack
-* 🚀 Featured Projects
-* 💼 Experience & Internships
-* 🎓 Education
-* 🏅 Certifications & Activities
-* 📞 Get In Touch
+* 🏠 Home (intro, highlights and stats)
+* 👨‍💻 About
+* 🛠️ Skills (focus areas and tech stack)
+* 🚀 Projects (filterable by AI & ML, Mobile and Web)
+* 💼 Experience
+* 🎓 Education & achievements
+* 📞 Contact
 
 ---
 

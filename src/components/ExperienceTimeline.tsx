@@ -115,7 +115,7 @@ const RoleDetails = ({ role }: { role: Role }) => (
 export default function ExperienceTimeline({ jobs }: { jobs: Job[] }) {
   return (
     // A thin rail with one dot per company; companies with several roles get a nested rail
-    <ol className="relative max-w-3xl mx-auto border-l border-white/10 ml-2 sm:ml-auto space-y-8">
+    <ol className="relative max-w-4xl border-l border-white/10 ml-2 space-y-8">
       {jobs.map((job, index) => {
         const current = job.roles.some((r) => !r.end);
         const first = job.roles[job.roles.length - 1];
@@ -142,13 +142,13 @@ export default function ExperienceTimeline({ jobs }: { jobs: Job[] }) {
             />
             <motion.article
               {...reveal({ y: 24, delay: index * 0.1 })}
-              className="rounded-2xl border border-white/10 bg-slate-900/70 p-5 sm:p-6 transition-colors duration-300 hover:border-cyan-400/40"
+              className="rounded-2xl border border-white/10 bg-slate-900/60 p-5 sm:p-6 transition-colors duration-300 hover:border-cyan-400/40"
             >
               {job.roles.length === 1 ? (
                 <>
                   <div className="flex items-start justify-between gap-4">
                     <div className="min-w-0">
-                      <h3 className="text-lg sm:text-xl font-semibold text-white leading-snug">{latest.title}</h3>
+                      <h3 className="font-display text-lg sm:text-xl font-semibold text-white leading-snug">{latest.title}</h3>
                       <p className="mt-1 text-sm sm:text-base">{companyLine}</p>
                     </div>
                     <Pill current={!latest.end}>{latest.end ? formatDuration(latest.start, latest.end) : 'Current'}</Pill>
@@ -163,7 +163,7 @@ export default function ExperienceTimeline({ jobs }: { jobs: Job[] }) {
                 <>
                   <div className="flex items-start justify-between gap-4">
                     <div className="min-w-0">
-                      <h3 className="text-lg sm:text-xl font-semibold text-white leading-snug">{job.company}</h3>
+                      <h3 className="font-display text-lg sm:text-xl font-semibold text-white leading-snug">{job.company}</h3>
                       {job.type && <p className="mt-1 text-sm sm:text-base text-slate-400">{job.type}</p>}
                     </div>
                     <Pill>{formatDuration(first.start, latest.end)}</Pill>

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { CheckCircle2, AlertCircle, Loader2, Rocket } from 'lucide-react';
-import { Button } from './ui/button';
+import { CheckCircle2, AlertCircle, Loader2, Send } from 'lucide-react';
 import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
+import { btnPrimary } from './styles';
 
 // Messages are emailed by FormSubmit (https://formsubmit.co), since GitHub Pages has no server.
 // After the one-time activation, FormSubmit sends a random alias that can replace the address
@@ -11,7 +11,9 @@ const CONTACT_EMAIL = 'rrahulgowda733@gmail.com';
 const FORM_ENDPOINT = `https://formsubmit.co/ajax/${CONTACT_EMAIL}`;
 
 const fieldClass =
-  'rounded-xl bg-slate-800/50 border-purple-400/30 text-white placeholder:text-cyan-200/60 focus:border-cyan-400';
+  'rounded-xl h-11 border-white/10 bg-white/[0.03] dark:bg-white/[0.03] px-4 text-slate-100 placeholder:text-slate-500 focus-visible:border-cyan-400/60 focus-visible:ring-cyan-400/20';
+
+const labelClass = 'mb-1.5 block text-sm font-medium text-slate-300';
 
 const emptyForm = { name: '', email: '', message: '' };
 
@@ -71,57 +73,66 @@ export default function ContactForm() {
         aria-hidden="true"
         className="hidden"
       />
-      <div>
-        <Input
-          placeholder="Your Name"
-          name="name"
-          aria-label="Your name"
-          value={formData.name}
-          onChange={handleInputChange}
-          className={fieldClass}
-          required
-        />
+      <div className="grid gap-4 sm:grid-cols-2">
+        <div>
+          <label htmlFor="contact-name" className={labelClass}>
+            Name
+          </label>
+          <Input
+            id="contact-name"
+            placeholder="Your name"
+            name="name"
+            autoComplete="name"
+            value={formData.name}
+            onChange={handleInputChange}
+            className={fieldClass}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="contact-email" className={labelClass}>
+            Email
+          </label>
+          <Input
+            id="contact-email"
+            type="email"
+            placeholder="you@example.com"
+            name="email"
+            autoComplete="email"
+            value={formData.email}
+            onChange={handleInputChange}
+            className={fieldClass}
+            required
+          />
+        </div>
       </div>
       <div>
-        <Input
-          type="email"
-          placeholder="Your Email"
-          name="email"
-          aria-label="Your email"
-          value={formData.email}
-          onChange={handleInputChange}
-          className={fieldClass}
-          required
-        />
-      </div>
-      <div>
+        <label htmlFor="contact-message" className={labelClass}>
+          Message
+        </label>
         <Textarea
-          placeholder="Your Message"
+          id="contact-message"
+          placeholder="What would you like to talk about?"
           name="message"
-          aria-label="Your message"
           value={formData.message}
           onChange={handleInputChange}
-          className={`${fieldClass} min-h-32`}
+          className={`${fieldClass} h-auto min-h-36 py-3`}
           required
         />
       </div>
-      <Button
-        type="submit"
-        disabled={status === 'sending'}
-        className="w-full bg-gradient-to-r from-purple-500 to-cyan-500 hover:from-purple-600 hover:to-cyan-600 text-white rounded-xl border border-purple-400/30 disabled:opacity-70"
-      >
+      <button type="submit" disabled={status === 'sending'} className={`${btnPrimary} w-full sm:w-auto`}>
         {status === 'sending' ? (
           <>
-            <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+            <Loader2 className="h-4 w-4 animate-spin" />
             Sending...
           </>
         ) : (
           <>
-            <Rocket className="w-4 h-4 mr-2" />
-            Send Message
+            <Send className="h-4 w-4" />
+            Send message
           </>
         )}
-      </Button>
+      </button>
 
       <div aria-live="polite">
         {status === 'sent' && (

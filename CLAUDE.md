@@ -17,14 +17,16 @@ Rahul Gowda R's personal portfolio: a single-page React + TypeScript site built 
 
 ## Layout
 
-- `src/App.tsx` contains almost the whole site. Its sections, in order: Hero (`#top`), About (`#about`), Skills (`#skills`), Tech Stack (`#tech-stack`), Projects (`#projects`), Experience (`#experience`), Education (`#education`), Certifications & Activities (`#certifications`), Contact (`#contact`), Footer.
-- Content is plain data arrays near the top of `App`: `skills`, `projects`, `techStack`, `experiences`, `education`, `certifications`, `activities`. Content comes from Rahul's resume and LinkedIn; don't invent claims. To add or edit content, change these arrays rather than the JSX.
-- `src/components/Navbar.tsx` is the fixed top bar. It highlights the section currently on screen and has a hamburger menu on mobile. Its `links` array must match the section `id`s.
-- `src/components/ExperienceTimeline.tsx` renders the Experience section from `experiences` (type `Job`): one card per company, most recent first, with a nested list when a company has several roles. Dates are `'YYYY-MM'` strings; leave `end` out for a current role. Durations are calculated LinkedIn-style, counting the first and last month (Aug–Oct = 3 mos), so 'Present' roles stay up to date.
+- **Content lives in `src/data.tsx`**: profile, socials, stats, focus areas, tech stack, projects, experiences, education, certifications, activities, and the nav section list. Content comes from Rahul's resume, LinkedIn and GitHub; don't invent claims. Edit content there, not in the JSX.
+- **`src/sections/`** has one component per page section, in order: `Hero` (`#top`), `About` (`#about`), `Skills` (`#skills`: focus areas plus the tech-stack table), `Projects` (`#projects`), `Experience` (`#experience`), `Education` (`#education`: degrees, certifications, activities), `Contact` (`#contact`), and `Footer`. `App.tsx` only composes them.
+- **Design system:** `src/components/styles.ts` holds the shared class strings (`btnPrimary`, `btnSecondary`, `card`, `chip`, `iconTile`, ...), and `SectionHeader` renders each section's numbered eyebrow and title. Use them instead of one-off styles. The palette is a near-black page (`#05070d`), slate text, `white/10` borders and one cyan accent. Fonts are Inter (`font-sans`) and Space Grotesk (`font-display`, for headings), self-hosted with `@fontsource` and imported in `main.tsx`.
+- `src/components/Background.tsx` is one fixed backdrop for the whole page (static glows, `StarField`, `ShootingStars`). Don't add star fields to individual sections.
+- `src/components/Navbar.tsx` is the fixed top bar. It highlights the section on screen and has a mobile menu. Its links come from `navSections` in `data.tsx`, which must match the section `id`s.
+- `src/components/ExperienceTimeline.tsx` renders `experiences` (type `Job`): one card per company, most recent first, with a nested list when a company has several roles. Dates are `'YYYY-MM'` strings; leave `end` out for a current role. Durations are calculated LinkedIn-style, counting the first and last month (Aug–Oct = 3 mos), so 'Present' roles stay up to date.
 - `src/components/reveal.ts` exports the shared `reveal()` entrance animation.
 - `src/components/ContactForm.tsx` owns the form state, so typing re-renders only the form.
 - `src/components/cosmic/` holds `StarField`, `ShootingStars` and the `useLoopingAnimations` hook they share.
-- `src/components/ui/` holds the shadcn components still in use: `button`, `card`, `input`, `textarea` and `utils`. The rest were removed with their packages. Add new ones from shadcn as needed.
+- `src/components/ui/` holds the only shadcn pieces still used: `input`, `textarea` and `utils`. `index.html` sets `class="dark"`, so their theme tokens use the dark set.
 - `src/components/figma/ImageWithFallback.tsx` is an `<img>` that shows a placeholder if the image fails to load.
 - `public/` holds static files (`resume.pdf`, `favicon.svg`). They are served under the base path, for example `/Rahul-Portfolio/resume.pdf`.
 - `src/index.css` is the CSS entry point. It imports Tailwind and `src/styles/globals.css`, which holds the theme tokens, base styles and the site's custom CSS.
@@ -44,21 +46,28 @@ These come from profiling idle and scrolling in Chrome, on desktop and on a thro
 - **Off-screen pausing:** `App` sets `data-offscreen` on sections that aren't visible, and `globals.css` pauses their CSS animations. `useLoopingAnimations` pauses its own animations the same way.
 - **Respect reduced motion.** Under `prefers-reduced-motion`, `useLoopingAnimations` doesn't start the star twinkle, and `globals.css` hides shooting stars and stops `animate-*` classes.
 
+## Resume
+
+- `public/resume.pdf` is generated from `resume/resume.html`. Run `npm run resume` after editing it; headless Chrome prints it at A4 with the bundled Latin Modern fonts (`resume/fonts/`), so it keeps the original LaTeX look.
+- Keep the resume's section order and style: Professional Summary, Education, Experience, Projects, Technical Skills, and Certifications & Leadership.
+- Keep the resume consistent with `src/data.tsx`. Its projects (ITSM Hub, SiteSculptor) come from Rahul's resume, not GitHub.
+- Don't add soft hyphens or CSS hyphenation. Chrome splits hyphenated words in the PDF's text layer ("Se cu ri ty"), which breaks résumé scanners. Check with `pdftotext public/resume.pdf -` after changes.
+- Tailwind skips `resume/` (`@source not` in `src/index.css`).
+
 ## Gotchas
 
 - **Base path.** `vite.config.ts` sets `base: "/Rahul-Portfolio/"`. Hard-coded asset links in JSX must include that prefix (for example `/Rahul-Portfolio/resume.pdf`). In `index.html`, use a root path such as `/favicon.svg` and Vite adds the prefix.
 - **Navbar scrolling.** Links scroll through `goTo()` in code, not the browser's anchor jump. On mobile the scroll waits for the menu's close animation to finish (`onExitComplete`), because that animation cancels any smooth scroll started while it runs.
 - **Tailwind CSS v4** runs through the `@tailwindcss/vite` plugin and generates classes from the source files, so any standard utility class works. Custom CSS in `globals.css` is unlayered, so it beats Tailwind utilities without `!important`.
 - **Animation:** import from `motion/react`, not `framer-motion`.
-- **The outline button variant has a light-theme background.** `variant="outline"` uses `bg-background`, which is white because the theme is light while the page is dark. That's why the "Download Resume" and "View on GitHub" buttons look white with faint text.
 - **Contact form email.** `ContactForm.tsx` posts to FormSubmit's AJAX endpoint (`https://formsubmit.co/ajax/<address>`), which emails each message to `rrahulgowda733@gmail.com`. There's no backend: GitHub Pages is static. FormSubmit needs a one-time activation (it emails the address after the first real submission). After that, the address in `CONTACT_EMAIL` can be swapped for the random alias FormSubmit provides. A hidden `_honey` field filters out bots. Don't test against the real endpoint casually, since every successful request sends Rahul an email. Intercept the request instead.
 - **External links** open in a new tab with `rel="noopener noreferrer"`. Icon-only links need an `aria-label`.
 
 ## Projects section
 
-- The order of the `projects` array matters. The first `FEATURED_COUNT` (4) are always shown, and the rest appear only after "View More Projects". Put the strongest projects first.
-- Each project links to a public repo under `github.com/Rahul-Gowda-R`. Before adding or changing one, check that the link works (`curl -s -o /dev/null -w "%{http_code}"`); repos have been renamed or deleted before.
+- The order of `projects` in `data.tsx` matters: the first `FEATURED_PROJECTS` (6) show under "All", and the rest after "View more". Put the strongest first.
+- Each project has `areas` (`ai`, `mobile`, `web`) for the filter tabs and `tags` for its tech chips. A filter always shows every match; "View more" only applies to "All".
+- Projects link to public repos under `github.com/Rahul-Gowda-R`; leave out `link` when there's no public repo (Shopeeva). Before adding or changing one, check that the link works (`curl -s -o /dev/null -w "%{http_code}"`); repos have been renamed or deleted before.
 - Build images with the `unsplash(id)` helper, and give every project a distinct image. Check that an image URL returns 200 and that the picture fits the project.
-- `ongoing: true` shows a disabled "Ongoing" button instead of a link.
 - The profile README, this portfolio repo and `Python---File-Handling` are intentionally left out.
-- **Tech Stack:** every item in `techStack` should be backed by a project or the experience section. Don't add skill percentages.
+- **Skills:** every focus area names the projects or roles behind it, and every `techStack` item should be backed by a project or role. Don't add skill percentages.

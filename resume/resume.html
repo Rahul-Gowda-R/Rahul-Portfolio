@@ -1,0 +1,213 @@
+<!doctype html>
+<!-- Source for public/resume.pdf. Print to PDF with headless Chrome (A4, no margins, CSS page size). -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Rahul Gowda R – Resume</title>
+<style>
+  @font-face { font-family: "LM Roman 10"; src: url("fonts/lmroman10-regular.otf"); font-weight: 400; font-style: normal; }
+  @font-face { font-family: "LM Roman 10"; src: url("fonts/lmroman10-bold.otf"); font-weight: 700; font-style: normal; }
+  @font-face { font-family: "LM Roman 10"; src: url("fonts/lmroman10-italic.otf"); font-weight: 400; font-style: italic; }
+  @font-face { font-family: "LM Roman 12"; src: url("fonts/lmroman12-bold.otf"); font-weight: 700; font-style: normal; }
+
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: "LM Roman 10", serif;
+    font-size: 10.91pt;
+    line-height: 13.6pt;
+    color: #000;
+    padding: 27pt 34pt 28pt 34pt;
+    font-kerning: normal;
+    word-spacing: -0.35pt; /* LaTeX lets interword spaces shrink a little; Chrome only stretches them */
+    font-variant-ligatures: common-ligatures;
+  }
+  a { color: inherit; text-decoration: none; }
+  b, .b { font-weight: 700; }
+  i, .i { font-style: italic; }
+
+  header { text-align: center; }
+  .name { font-family: "LM Roman 12", serif; font-weight: 700; font-size: 14.35pt; line-height: 18pt; margin-bottom: 3pt; }
+  .contact { line-height: 16pt; }
+
+  h2 {
+    font-size: 10.91pt;
+    font-weight: 700;
+    margin: 10pt 0 3pt;
+    padding: 0 0 1.5pt 1pt;
+    border-bottom: 0.4pt solid #000;
+    line-height: 13.6pt;
+    break-after: avoid;
+  }
+
+  p.summary { margin: 0; text-align: justify; hyphens: auto; }
+
+  .row { display: flex; justify-content: space-between; align-items: baseline; gap: 12pt; }
+  .entry { margin-top: 3pt; break-inside: avoid-page; }
+  .entry + .entry { margin-top: 4pt; }
+  .entry-title { font-weight: 700; }
+  .entry-date { font-style: italic; white-space: nowrap; }
+  .entry-tech { font-style: italic; white-space: nowrap; }
+
+  ul { list-style: none; margin: 0.5pt 0 0; padding: 0; }
+  li { position: relative; padding-left: 14pt; text-align: justify; hyphens: auto; margin-top: 0.6pt; }
+  li::before { content: "\2022"; position: absolute; left: 1pt; }
+
+  .edu .row + .row { margin-top: 1pt; }
+
+  .skills p { margin: 0 0 1.2pt; text-align: justify; hyphens: auto; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; column-gap: 20pt; margin-top: 2pt; }
+  .two-col h3 { font-size: 10.91pt; font-weight: 700; margin: 0 0 1pt; }
+  .two-col li { text-align: left; }
+</style>
+</head>
+<body>
+  <header>
+    <div class="name">Rahul Gowda R</div>
+    <div class="contact">Bengaluru, Karnataka &nbsp;|&nbsp; <a href="mailto:rrahulgowda733@gmail.com">rrahulgowda733@gmail.com</a> &nbsp;|&nbsp; +91 73377 88273</div>
+    <div class="contact">
+      <a href="https://www.linkedin.com/in/rahul-gowda-r">LinkedIn</a> &nbsp;|&nbsp;
+      <a href="https://github.com/Rahul-Gowda-R">GitHub</a> &nbsp;|&nbsp;
+      <a href="https://rahul-gowda-r.github.io/Rahul-Portfolio/">Portfolio</a>
+    </div>
+  </header>
+
+  <h2>Professional Summary</h2>
+  <p class="summary">
+    Computer Science Engineering graduate and AI Engineer at BlueOrbit Tech, with hands-on experience in AI and
+    machine learning, Android and full-stack development, and enterprise IT operations. Previously worked as an
+    IT Executive at BlueOrbit Tech, supporting CRM systems, user administration, VPN connectivity, telephony
+    systems, network troubleshooting, hardware support, and branch-level IT operations, and completed
+    internships in Android development and AI &amp; prompt engineering. Strong foundation in Java, Python,
+    JavaScript, Kotlin, REST APIs, SQL, databases, and structured troubleshooting. Passionate about designing
+    scalable solutions, working in agile teams, and building AI-powered products with real-world impact.
+  </p>
+
+  <h2>Education</h2>
+  <div class="edu">
+    <div class="row"><span class="b">Bachelor of Engineering – Computer Science and Engineering</span><span class="i">2026</span></div>
+    <div class="row"><span>Rajeev Institute of Technology, VTU Belagavi</span><span class="b">CGPA: 8.47</span></div>
+    <div class="row"><span class="b">Senior Secondary – PUC (PCMB)</span><span class="b">89.5%</span></div>
+  </div>
+
+  <h2>Experience</h2>
+
+  <div class="entry">
+    <div class="row"><span class="entry-title">AI Engineer | BlueOrbit Tech, Bengaluru</span><span class="entry-date">Oct 2026 – Present</span></div>
+  </div>
+
+  <div class="entry">
+    <div class="row"><span class="entry-title">IT Executive | BlueOrbit Tech, Bengaluru</span><span class="entry-date">Aug 2026 – Oct 2026</span></div>
+    <ul>
+      <li>Provided day-to-day IT support for users and branch operations, troubleshooting hardware, software, CRM, network, and system-related issues.</li>
+      <li>Managed CRM user administration including user creation, removal of inactive users, login support, access configuration, and assistance with CRM workflows.</li>
+      <li>Configured and troubleshot Zoiper and telephony systems, including agent credentials, dialer connectivity, and communication-related issues.</li>
+      <li>Troubleshot VPN connectivity, IP configuration, static IP issues, internet connectivity, and branch-level network access problems.</li>
+      <li>Supported CRM and server availability issues by coordinating with development and network teams, investigating possible root causes, and verifying service restoration.</li>
+      <li>Performed hardware diagnostics and inventory management by testing CPUs, monitors, keyboards, mice, cables, and other IT equipment.</li>
+      <li>Assisted with system setup and technical onboarding for users, including CRM access, VPN configuration, login support, and basic troubleshooting.</li>
+      <li>Followed a structured troubleshooting process by identifying symptoms, isolating the affected component, checking configurations, coordinating escalation, implementing fixes, and validating the resolution.</li>
+    </ul>
+  </div>
+
+  <div class="entry">
+    <div class="row"><span class="entry-title">Android Development Intern (GenAI-Focused) | MindMatrix, Bengaluru</span><span class="entry-date">Sep 2025 – Jan 2026</span></div>
+    <ul>
+      <li>Designed and built Controlio, an Android Employee Performance Tracker, using Kotlin following MVC architecture and object-oriented programming principles.</li>
+      <li>Implemented role-based access control with GenAI-driven performance insights, writing modular, reusable components across the application layer.</li>
+      <li>Integrated REST APIs and worked with application data and enterprise workflows.</li>
+      <li>Worked with Salesforce CRM to manage organizational data, understand CRM workflows, and troubleshoot platform-related issues.</li>
+      <li>Performed application testing, debugging, and issue resolution to improve application reliability.</li>
+      <li>Used Git for version control and collaborated with team members in an agile sprint workflow.</li>
+    </ul>
+  </div>
+
+  <div class="entry">
+    <div class="row"><span class="entry-title">AI &amp; Prompt Engineering Intern | VaultofCodes, Delhi</span><span class="entry-date">Jun 2025 – Jul 2025</span></div>
+    <ul>
+      <li>Designed and developed J.A.R.V.I.S, a full-featured AI assistant using the Gemini API and Flask, with a client-server architecture separating inference logic from the frontend.</li>
+      <li>Engineered a voice and text interaction system using the Web Speech API, handling async request/response flows and optimizing prompt design for accuracy and latency.</li>
+      <li>Delivered a working product end-to-end within a fast-paced internship cycle, iterating rapidly on user-facing features.</li>
+    </ul>
+  </div>
+
+  <h2>Projects</h2>
+
+  <div class="entry">
+    <div class="row"><span class="entry-title">ITSM Hub – Internal IT Service Management System</span><span class="entry-tech">React.js, Node.js, Express.js, MySQL</span></div>
+    <ul>
+      <li>Developed an internal IT Service Management platform for raising, tracking, assigning, and resolving IT support tickets.</li>
+      <li>Implemented ticket lifecycle management, user roles, branch management, issue categorization, priority handling, and support workflows.</li>
+      <li>Designed RESTful APIs using Node.js and Express.js with MySQL for managing users, tickets, branches, and support records.</li>
+      <li>Implemented role-based workflows and centralized ticket visibility to improve IT issue tracking and reduce manual coordination.</li>
+    </ul>
+  </div>
+
+  <div class="entry">
+    <div class="row"><span class="entry-title">SiteSculptor – AI Website Builder</span><span class="entry-tech">React.js, Node.js, Express.js, MongoDB</span></div>
+    <ul>
+      <li>Developed an AI-powered platform that generates responsive websites from natural language prompts.</li>
+      <li>Built backend services using Node.js and Express.js and integrated REST APIs with the React.js frontend.</li>
+      <li>Designed MongoDB data models for project storage and retrieval.</li>
+      <li>Debugged API integrations and implemented modular backend components to improve application reliability.</li>
+    </ul>
+  </div>
+
+  <div class="entry">
+    <div class="row"><span class="entry-title">SMS Spam Detection – Mobile ML Application</span><span class="entry-tech">Flutter, Python, TensorFlow Lite</span></div>
+    <ul>
+      <li>Developed a mobile application to classify SMS messages as spam or legitimate using a machine learning model.</li>
+      <li>Trained and evaluated a text classification model and converted it to TensorFlow Lite for on-device inference.</li>
+      <li>Integrated the ML model with Flutter to perform real-time classification without continuous server communication.</li>
+      <li>Applied NLP preprocessing and model evaluation techniques to improve classification reliability.</li>
+    </ul>
+  </div>
+
+  <div class="entry">
+    <div class="row"><span class="entry-title">DriveGuard AI – Driver Drowsiness Detection</span><span class="entry-tech">Python, OpenCV, Computer Vision</span></div>
+    <ul>
+      <li>Developed a computer vision system for detecting potential driver drowsiness from real-time camera input.</li>
+      <li>Implemented facial and eye-related visual analysis using Python and OpenCV.</li>
+      <li>Processed continuous video frames and designed the system for real-time monitoring and alert generation.</li>
+    </ul>
+  </div>
+
+  <h2>Technical Skills</h2>
+  <div class="skills">
+    <p><b>Programming:</b> Java, Python, JavaScript, Kotlin, Dart, SQL</p>
+    <p><b>AI &amp; Machine Learning:</b> TensorFlow Lite, Scikit-learn, OpenCV, NLP, Gemini API, Prompt Engineering, ML Pipelines</p>
+    <p><b>IT &amp; Networking:</b> Network Troubleshooting, TCP/IP, DNS, DHCP, VPN, IP Configuration, Static IP, LAN/WAN Fundamentals, Firewall Fundamentals, Hardware Troubleshooting</p>
+    <p><b>Systems &amp; Enterprise IT:</b> CRM Administration, Salesforce CRM, User Management, Access Management, Zoiper, Telephony/Dialer Support, System Administration, Incident Troubleshooting</p>
+    <p><b>Frontend &amp; Mobile:</b> React.js, Android (Kotlin), Flutter</p>
+    <p><b>Backend &amp; APIs:</b> Node.js, Express.js, Flask, REST APIs</p>
+    <p><b>Databases:</b> MySQL, MongoDB, SQLite</p>
+    <p><b>Cloud &amp; DevOps:</b> AWS Cloud Fundamentals, Cloud Computing, Virtualization Fundamentals, Docker, CI/CD Fundamentals</p>
+    <p><b>Tools:</b> Git, GitHub, Postman, VS Code, Android Studio</p>
+    <p><b>Core Concepts:</b> Object-Oriented Programming, Data Structures, SDLC, Agile, MVC, Debugging, Testing, API Integration, Root Cause Analysis</p>
+  </div>
+
+  <h2>Certifications &amp; Leadership</h2>
+  <div class="two-col">
+    <div>
+      <h3>Certifications</h3>
+      <ul>
+        <li>Salesforce Trailblazer Explorer – 16+ Badges</li>
+        <li>NPTEL Python Programming</li>
+        <li>UiPath Developer Associate</li>
+        <li>NSDC Cyber Security</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Activities &amp; Leadership</h3>
+      <ul>
+        <li>Participant – IGNITEX 2025 National Hackathon</li>
+        <li>Participant – GenAI Hackathon 2025</li>
+        <li>Coordinated TechKriti’24 Technical Event</li>
+        <li>Master of Ceremonies – Swarit 2026</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,15 +1,7 @@
 import { useEffect, useRef, useState, type MouseEvent } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X, Download } from 'lucide-react';
-
-const links = [
-  { id: 'about', label: 'About' },
-  { id: 'skills', label: 'Skills' },
-  { id: 'projects', label: 'Projects' },
-  { id: 'experience', label: 'Experience' },
-  { id: 'education', label: 'Education' },
-  { id: 'contact', label: 'Contact' },
-];
+import { navSections as links, profile } from '../data';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -72,7 +64,7 @@ export default function Navbar() {
 
   const linkClass = (id: string) =>
     `relative px-3 py-2 text-sm transition-colors duration-300 ${
-      active === id ? 'text-cyan-300' : 'text-gray-300 hover:text-white'
+      active === id ? 'text-white' : 'text-slate-400 hover:text-white'
     }`;
 
   return (
@@ -83,7 +75,7 @@ export default function Navbar() {
         // scroll frame was expensive, and the blur was barely visible on this dark design
         className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
           scrolled || open
-            ? 'bg-black/90 border-b border-purple-400/20 shadow-lg shadow-black/30'
+            ? 'bg-[#05070d]/90 border-b border-white/10 shadow-lg shadow-black/40'
             : 'bg-transparent border-b border-transparent'
         }`}
       >
@@ -91,9 +83,10 @@ export default function Navbar() {
           <a
             href="#top"
             onClick={(e) => goTo(e, 'top')}
-            className="text-lg font-bold bg-gradient-to-r from-white via-blue-200 to-cyan-300 bg-clip-text text-transparent"
+            className="flex items-center gap-2.5 font-display font-semibold text-white"
           >
-            ✦ Rahul Gowda R
+            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-cyan-400 text-sm font-bold text-slate-950">RG</span>
+            <span className="hidden sm:inline">{profile.name}</span>
           </a>
 
           {/* Desktop links */}
@@ -110,9 +103,9 @@ export default function Navbar() {
               </a>
             ))}
             <a
-              href="/Rahul-Portfolio/resume.pdf"
+              href={profile.resume}
               download
-              className="ml-3 inline-flex items-center gap-2 rounded-xl border border-cyan-400/60 px-4 py-2 text-sm text-cyan-300 hover:bg-cyan-400/10 transition-colors duration-300"
+              className="ml-3 inline-flex items-center gap-2 rounded-xl bg-cyan-400 px-4 py-2 text-sm font-semibold text-slate-950 hover:bg-cyan-300 transition-colors duration-200"
             >
               <Download className="w-4 h-4" />
               Resume
@@ -139,7 +132,7 @@ export default function Navbar() {
               animate={{ height: 'auto', opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.25 }}
-              className="md:hidden overflow-hidden border-t border-purple-400/20"
+              className="md:hidden overflow-hidden border-t border-white/10"
             >
               <div className="px-4 py-3 flex flex-col">
                 {links.map(({ id, label }) => (
@@ -155,7 +148,7 @@ export default function Navbar() {
                   </a>
                 ))}
                 <a
-                  href="/Rahul-Portfolio/resume.pdf"
+                  href={profile.resume}
                   download
                   onClick={() => setOpen(false)}
                   className="mt-4 mb-2 inline-flex items-center justify-center gap-2 rounded-xl border border-cyan-400/60 px-4 py-2.5 text-cyan-300"
